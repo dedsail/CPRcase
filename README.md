@@ -5,8 +5,4 @@
 
 *Backend* - be
 
-*uxixdesign* - dui
-
 *DataScience* - ds
-
-*ProjectManagement* - pm
