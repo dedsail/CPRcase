@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Leafy Live',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      debugShowCheckedModeBanner: false, //Убираем надпись 'Debug'
+      home: WelcomeScreen(),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Добро пожаловать'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text(
+                'Привет, пользователь!',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 500),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return HackathonInfoScreen();
+                    },
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black,
+              ),
+              child: Text('Узнать о хакатоне'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+class HackathonInfoScreen extends StatefulWidget {
+  @override
+  _HackathonInfoScreenState createState() => _HackathonInfoScreenState();
+}
+
+class _HackathonInfoScreenState extends State<HackathonInfoScreen> {
+  String _status = 'Не участвую';
+  int _likes = 0;
+
+  void _toggleStatus() {
+    setState(() {
+      if (_status == 'Не участвую') {
+        _status = 'Участвую';
+      } else {
+        _status = 'Не участвую';
+      }
+    });
+  }
+
+  void _incrementLikes() {
+    setState(() {
+      _likes++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Информация о хакатоне'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Название: Высшая лига',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Дата: 03.02-03.03 2025 г',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Описание: От профи до мега профи',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Статус: $_status',
+              style: TextStyle(fontSize: 20),
+            ),
+            ElevatedButton(
+              onPressed: _toggleStatus,
+              child: Text('Изменить статус'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black,
+              ),
+            ),
+
+            SizedBox(height: 20),
+            Text(
+              'Лайков: $_likes',
+              style: TextStyle(fontSize: 20),
+            ),
+            ElevatedButton(
+              onPressed: _incrementLikes,
+              child: Text('Поставить лайк'),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
