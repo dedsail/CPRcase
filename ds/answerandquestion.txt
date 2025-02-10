@@ -6,3 +6,8 @@ https://huggingface.co/nanocu/KPDIS-1E10 - растения, заболеван�
 (2) необученная
 https://huggingface.co/docs/transformers/model_doc/mobilenet_v2 - 
 нейронка, обучить и настроить, лицензия свободаная
+
+
+Датасет
+оксвордский или plants type dataset 
+https://www.kaggle.com/datasets/yudhaislamisulistya/plants-type-datasets
