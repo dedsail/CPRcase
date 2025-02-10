@@ -1,0 +1,8 @@
+Модельки
+(1) обученная
+https://huggingface.co/nanocu/KPDIS-1E10 - растения, заболевания, лицензия!!!
+
+
+(2) необученная
+https://huggingface.co/docs/transformers/model_doc/mobilenet_v2 - 
+нейронка, обучить и настроить, лицензия свободаная
