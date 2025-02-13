@@ -1,13 +1,12 @@
 Модельки
 (1) обученная
-https://huggingface.co/nanocu/KPDIS-1E10 - растения, заболевания, лицензия!!!
+https://huggingface.co/nanocu/KPDIS-1E10 - растения, заболевания растений
 
 
 (2) необученная
-https://huggingface.co/docs/transformers/model_doc/mobilenet_v2 - 
-нейронка, обучить и настроить, лицензия свободаная
-
+https://huggingface.co/docs/transformers/model_doc/mobilenet_v2 - необученная
 
 Датасет
-оксвордский или plants type dataset 
+оксвордский или plants type dataset:
+
 https://www.kaggle.com/datasets/yudhaislamisulistya/plants-type-datasets
