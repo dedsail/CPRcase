@@ -10,3 +10,14 @@ https://huggingface.co/docs/transformers/model_doc/mobilenet_v2 - необуче
 оксвордский или plants type dataset:
 
 https://www.kaggle.com/datasets/yudhaislamisulistya/plants-type-datasets
+
+
+Проблемы:
+
+(kaggle dataset не содержит csv файлов и аннотаций)
+Файлы не переносятся в папку data
+
+Возможное решение:
+
+
+Уменьшить количество файлов, другой датасет
