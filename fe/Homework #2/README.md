@@ -1,5 +1,5 @@
 Homework2.apk установщик приложения на android
-
+Кнопка камеры на Главном экране не работает
 Скриншоты приложения
 ![Screenshot_20250214-102458](https://github.com/user-attachments/assets/1b3ef49b-304b-4682-974c-8e2825153f6b)
 ![Screenshot_20250214-102517](https://github.com/user-attachments/assets/7b54ded6-f92c-44e0-afb2-7bf5e4084b4c)
