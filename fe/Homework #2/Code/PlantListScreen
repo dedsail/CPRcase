@@ -1,0 +1,130 @@
+import 'package:flutter/material.dart';
+import 'package:homework2/PlantDetailScreen.dart';
+
+class PlantListScreen extends StatefulWidget {
+  @override
+  _PlantListScreenState createState() => _PlantListScreenState();
+}
+
+class _PlantListScreenState extends State<PlantListScreen> {
+  List<String> plants = ['Герань', 'Кактус', 'Алоэ', 'Змеиное растение'];
+  TextEditingController _textController = TextEditingController();
+
+  void _addPlant(String name) {
+    setState(() {
+      plants.add(name);
+    });
+    _textController.clear();
+  }
+
+  void _deletePlant(int index) {
+    setState(() {
+      plants.removeAt(index);
+    });
+  }
+
+  void _editPlant(int index, String newName) {
+    setState(() {
+      plants[index] = newName;
+    });
+  }
+
+  void _navigateToDetailScreen(String plantName) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlantDetailScreen(plantName: plantName),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Список растений'),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _textController,
+                    decoration: InputDecoration(
+                      hintText: 'Введите название растения',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    if (_textController.text.isNotEmpty) {
+                      _addPlant(_textController.text);
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: plants.length,
+              itemBuilder: (context, index) {
+                return Dismissible(
+                  key: Key(plants[index]),
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: Icon(Icons.delete, color: Colors.white),
+                  ),
+                  onDismissed: (direction) {
+                    _deletePlant(index);
+                  },
+                  child: ListTile(
+                    title: Text(plants[index]),
+                    trailing: IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            String newName = plants[index];
+                            return AlertDialog(
+                              title: Text('Редактировать'),
+                              content: TextField(
+                                controller: TextEditingController(text: newName),
+                                onChanged: (value) {
+                                  newName = value;
+                                },
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    _editPlant(index, newName);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Сохранить'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    onTap: () {
+                      _navigateToDetailScreen(plants[index]);
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
